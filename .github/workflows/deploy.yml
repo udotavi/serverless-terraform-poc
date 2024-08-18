@@ -35,11 +35,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: Enter udotavi Directory
-        run: |
-          cd ./udotavi
-          pwd
       - name: Deploy with Serverless
         run: |
+          cd ./udotavi
           pwd
           serverless deploy --stage dev
