@@ -19,7 +19,9 @@ jobs:
           python-version: "3.9"
 
       - name: Enter udotavi Directory
-        run: cd ./udotavi
+        run: |
+            cd ./udotavi
+            pwd
 
       - name: Install Serverless Framework
         run: npm install -g serverless
@@ -39,4 +41,6 @@ jobs:
           aws-region: eu-west-1
 
       - name: Deploy with Serverless
-        run: serverless deploy --stage dev
+        run: |
+            pwd
+            serverless deploy --stage dev
