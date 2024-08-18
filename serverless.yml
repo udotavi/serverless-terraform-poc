@@ -1,0 +1,31 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: udotavi
+
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: udotavi
+
+provider:
+  name: aws
+  runtime: python3.12
+  stage: dev # Define the stage here, e.g., dev, prod, etc.
+  # region: eu-west-1
+
+layers:
+  commonDependencies:
+    path: layer
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - python3.12
+
+functions:
+  hello:
+    handler: src.handler.hello
+    layers:
+      - { Ref: CommonDependenciesLambdaLayer }
+    events:
+      - http:
+          path: hello
+          method: get
+
+package:
+  include:
+    - src/**

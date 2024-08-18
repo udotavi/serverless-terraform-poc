@@ -21,12 +21,12 @@ jobs:
       - name: Install Serverless Framework
         run: npm install -g serverless
 
-      #   - name: Install Dependencies for Lambda Layer
-      #     run: |
-      #       mkdir layer
-      #       cd layer
-      #       pip install -r python/requirements.txt -t python/
-      #       cd ..
+        # - name: Install Dependencies for Lambda Layer
+        #   run: |
+        #     mkdir layer
+        #     cd layer
+        #     pip install -r python/requirements.txt -t python/
+        #     cd ..
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -36,7 +36,5 @@ jobs:
           aws-region: eu-west-1
 
       - name: Deploy with Serverless
-        run: |
-          cd ./udotavi
-          pwd
-          serverless deploy --stage dev
+        run: serverless deploy --stage dev
+        working-directory: ./udotavi
